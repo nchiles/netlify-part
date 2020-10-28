@@ -63,6 +63,7 @@ $('#submitButton').click(function(){
       .then(function(data){
 		console.log(data);
 		let winnersArr = data.results;
+		console.log(winnersArr)
 		let winnersRow = winnersArr.join(' ');
 		console.log(winnersRow)
 		addName(winnersRow)
