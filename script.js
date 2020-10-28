@@ -63,9 +63,7 @@ $('#submitButton').click(function(){
       .then(function(data){
 		console.log(data);
 		let winnersArr = data.results;
-		console.log(`${winnersArr[0].name} won a ${winnersArr[0].prize}`)
-		let winnersRow = winnersArr;
-		console.log(winnersRow)
+		let winnersRow = `${winnersArr[0].name} won a ${winnersArr[0].prize}`;
 		addName(winnersRow)
       })
       .catch(function(err){
