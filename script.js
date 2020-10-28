@@ -45,7 +45,7 @@ function addName() {
 	var inputValue = document.getElementById('nameInput').value;
 	var winningImage = $('input[type="radio"]:checked').siblings('.image');
 	var radioValue = document.querySelector('input[type="radio"]:checked').value;
-  var newLine = document.createTextNode(`${inputValue} won a ${radioValue}!`);
+  	var newLine = document.createTextNode(`${inputValue} won a ${radioValue}!`);
 	li.appendChild(newLine);
 	document.getElementById('winnersList').appendChild(li);
 	$('.image').css('filter', 'blur(0px) grayscale(1) opacity(0.5)');
@@ -55,25 +55,39 @@ function addName() {
 }
 
 $('#submitButton').click(function(){
-	var inputValue = document.getElementById('nameInput').value;
-	var radioValue = document.querySelector('input[type="radio"]:checked').value;
-	if (inputValue === '') {
-    alert('Add your name!');
-  } else {				
-		$.ajax({ 
-			url: '/',
-			type: 'POST',
-			cache: false, 
-			data: { name: inputValue, prize: radioValue }, 
-			success: function(data){
-					addName()
-			},
-			error: function(jqXHR, textStatus, err){
-				alert('text status '+textStatus+', err '+err)
-			}
-		})
-	}	
+	var url = 'https://sheltered-cove-25929.herokuapp.com';
+    fetch(url)
+      .then(function(response){        
+        return response.json();
+      })
+      .then(function(data){
+		console.log(data);
+      })
+      .catch(function(err){
+        console.log(err);
+      })
 });
+
+// $('#submitButton').click(function(){
+// 	var inputValue = document.getElementById('nameInput').value;
+// 	var radioValue = document.querySelector('input[type="radio"]:checked').value;
+// 	if (inputValue === '') {
+//     alert('Add your name!');
+//   } else {				
+// 		$.ajax({ 
+// 			url: '/',
+// 			type: 'POST',
+// 			cache: false, 
+// 			data: { name: inputValue, prize: radioValue }, 
+// 			success: function(data){
+// 					addName()
+// 			},
+// 			error: function(jqXHR, textStatus, err){
+// 				alert('text status '+textStatus+', err '+err)
+// 			}
+// 		})
+// 	}	
+// });
 
 
 
