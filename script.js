@@ -40,18 +40,18 @@ function disableForm() {
 
 loadImages();
 
-function addName() {
+function addName(data) {
  	var li = document.createElement('li');
-	var inputValue = document.getElementById('nameInput').value;
-	var winningImage = $('input[type="radio"]:checked').siblings('.image');
-	var radioValue = document.querySelector('input[type="radio"]:checked').value;
-  	var newLine = document.createTextNode(`${inputValue} won a ${radioValue}!`);
+		// var inputValue = document.getElementById('nameInput').value;
+		// var winningImage = $('input[type="radio"]:checked').siblings('.image');
+		// var radioValue = document.querySelector('input[type="radio"]:checked').value;
+  	var newLine = document.createTextNode(data);
 	li.appendChild(newLine);
 	document.getElementById('winnersList').appendChild(li);
-	$('.image').css('filter', 'blur(0px) grayscale(1) opacity(0.5)');
-	$(winningImage).css('filter', 'grayscale(0)');
-	$('#playAgain').css('display', 'unset');
-	disableForm()
+		// $('.image').css('filter', 'blur(0px) grayscale(1) opacity(0.5)');
+		// $(winningImage).css('filter', 'grayscale(0)');
+		// $('#playAgain').css('display', 'unset');
+		// disableForm()
 }
 
 $('#submitButton').click(function(){
@@ -62,34 +62,11 @@ $('#submitButton').click(function(){
       })
       .then(function(data){
 		console.log(data);
+		let winnersArr = data.results;
+		let winnersRow = winnersArr.join(' ');
+		addName(winnersRow)
       })
       .catch(function(err){
-        console.log(err);
+		console.log(err);
       })
 });
-
-// $('#submitButton').click(function(){
-// 	var inputValue = document.getElementById('nameInput').value;
-// 	var radioValue = document.querySelector('input[type="radio"]:checked').value;
-// 	if (inputValue === '') {
-//     alert('Add your name!');
-//   } else {				
-// 		$.ajax({ 
-// 			url: '/',
-// 			type: 'POST',
-// 			cache: false, 
-// 			data: { name: inputValue, prize: radioValue }, 
-// 			success: function(data){
-// 					addName()
-// 			},
-// 			error: function(jqXHR, textStatus, err){
-// 				alert('text status '+textStatus+', err '+err)
-// 			}
-// 		})
-// 	}	
-// });
-
-
-
-
-
