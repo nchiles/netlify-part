@@ -55,7 +55,7 @@ function addName(data) {
 }
 
 $('#submitButton').click(function(){
-	var url = 'https://sheltered-cove-25929.herokuapp.com';
+	var url = 'https://mysteryprize-backend.herokuapp.com/';
     fetch(url)
       .then(function(response){        
         return response.json();
